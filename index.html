@@ -1,0 +1,1283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="assets/astro-rocket.webp">
+<meta property="og:image" content="https://marcelovs2103.github.io/nebula-hackathon/assets/astro-rocket.webp">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Nebula Hackathon 2026</title>
+<meta name="description" content="Nebula Hackathon 2026 · Startup Club USIL. 6 días para crear una solución a un problema real, en el sector que elijas o propongas. 9 al 14 de noviembre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: luminous "daylight nebula" — an interactive constellation hero, then a single editorial column
+   with wide bands (tracks, timeline, prizes). Single light theme by choice: the club asked for light colors. */
+:root {
+  color-scheme: light;
+  --bg: #ECE8FB;          /* daylight space: soft periwinkle-lavender */
+  --surface: #FFFFFF;
+  --card: rgba(255, 255, 255, .74);     /* translucent glass so the cosmos shows through */
+  --line: rgba(122, 63, 242, .14);
+  --ink: #17152B;         /* deep cosmic ink */
+  --muted: #5D5A75;
+  --accent: #FF5B3A;      /* solar coral: CTAs and the one loud moment */
+  --accent-ink: #FFFFFF;
+  --lilac: #B9A8FF;
+  --nebula: #1FB5C9;      /* the cyan of the NEBULA logotype */
+  --violet: #7A3FF2;      /* brand CTA gradient: violet -> magenta -> coral */
+  --magenta: #C346D6;
+  --cosmic: linear-gradient(100deg, var(--violet) 0%, var(--magenta) 52%, var(--accent) 100%);
+  --climate: #18A979;     /* track colors */
+  --fin: #E39A0B;
+  --saas: #3D7BF2;
+  --peach: #FFD9C7;
+  --mint: #C9F2E2;
+  --sky: #D3E3FF;
+  --lav: #E6DEFF;
+
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Hanken Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --step-3: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  --step-4: clamp(3.2rem, 1.6rem + 8vw, 8.5rem);
+  --wrap: 1180px;
+  --radius: 22px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+/* ---------- Daylight cosmos (fixed behind everything) ---------- */
+.space { position: fixed; inset: 0; z-index: -10; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(55% 45% at 8% 6%, rgba(185, 168, 255, .75), transparent 70%),
+    radial-gradient(45% 40% at 96% 22%, rgba(31, 181, 201, .30), transparent 70%),
+    radial-gradient(50% 45% at 85% 78%, rgba(195, 70, 214, .26), transparent 70%),
+    radial-gradient(55% 50% at 6% 88%, rgba(255, 168, 140, .38), transparent 70%),
+    radial-gradient(35% 30% at 50% 50%, rgba(255, 255, 255, .55), transparent 75%),
+    linear-gradient(180deg, #E4DEFF 0%, #EEE9FF 35%, #F6ECF6 70%, #E6F0FF 100%);
+}
+.space::after { /* faint milky-way band */
+  content: ""; position: absolute; inset: -20%;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, .45) 47%, rgba(185, 168, 255, .25) 52%, transparent 62%);
+  filter: blur(30px);
+}
+#starfield { position: absolute; inset: 0; width: 100%; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.02; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
+.eyebrow {
+  font-family: var(--f-mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); display: inline-flex; align-items: center; gap: .6rem;
+}
+.eyebrow::before { content: "✦"; color: var(--nebula); font-size: .95rem; line-height: 1; }
+section { padding-block: clamp(4rem, 8vw, 7.5rem); }
+.sec-head { display: grid; gap: 1rem; max-width: 760px; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.sec-head h2 { font-size: var(--step-3); font-weight: 800; }
+.sec-head p { color: var(--muted); font-size: var(--step-1); max-width: 62ch; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: .6rem; justify-content: center;
+  font-family: var(--f-body); font-weight: 700; font-size: 1rem; text-decoration: none;
+  padding: 1.15rem 2rem; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn-primary { font-size: 1.15rem; background: var(--cosmic); background-size: 140% 100%; background-position: 0 0; color: var(--accent-ink); box-shadow: 0 10px 30px -10px color-mix(in srgb, var(--magenta) 75%, transparent); }
+.btn-primary:hover { background-position: 100% 0; }
+.btn .rocket { width: 22px; height: 22px; flex: none; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -10px color-mix(in srgb, var(--magenta) 85%, transparent); }
+.btn-ghost { background: color-mix(in srgb, var(--surface) 70%, transparent); color: var(--ink); border-color: var(--line); backdrop-filter: blur(8px); }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn .arrow { transition: transform .2s ease; }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: color-mix(in srgb, #F6F3FF 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 68px; }
+.brand { display: flex; align-items: center; gap: .6rem; font-family: var(--f-display); font-weight: 800; font-size: 1.05rem; text-decoration: none; letter-spacing: -0.01em; }
+.brand-mark-old { width: 30px; height: 30px; border-radius: 50%; background: conic-gradient(from 200deg, var(--accent), var(--fin), var(--climate), var(--saas), var(--lilac), var(--accent)); position: relative; flex: none; }
+.brand-mark-old::after { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: var(--bg); }
+.brand-mark { width: 38px; height: auto; flex: none; transform: rotate(-6deg); }
+.brand small { font-family: var(--f-mono); font-weight: 400; font-size: .72rem; color: var(--muted); letter-spacing: .08em; }
+.nav-links { display: flex; gap: 1.6rem; font-weight: 600; font-size: .95rem; }
+.nav-links a { text-decoration: none; color: var(--muted); transition: color .2s; }
+.nav-links a:hover { color: var(--ink); }
+.nav .btn { padding: .85rem 1.6rem; font-size: 1.05rem; }
+@media (max-width: 860px) { .nav-links { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem); overflow: hidden; isolation: isolate; }
+.hero-sky { position: absolute; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 12% 18%, var(--peach) 0%, transparent 70%),
+    radial-gradient(38% 45% at 88% 12%, var(--sky) 0%, transparent 70%),
+    radial-gradient(45% 55% at 78% 88%, var(--mint) 0%, transparent 70%),
+    radial-gradient(40% 50% at 22% 92%, var(--lav) 0%, transparent 70%);
+  animation: drift 22s ease-in-out infinite alternate;
+}
+.hero-sky { opacity: .75; }
+@keyframes drift { to { transform: scale(1.08) translate(-1.5%, 1%); filter: hue-rotate(-12deg); } }
+.cosmos { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.cosmos > * { position: absolute; }
+.c-planet { width: clamp(80px, 10vw, 150px); top: 18%; right: max(16px, calc(50% - 600px)); animation: float 9s ease-in-out infinite; }
+.c-rocket { width: clamp(150px, 17vw, 250px); height: auto; top: 13%; right: calc(max(16px, 50% - 590px) + clamp(110px, 13vw, 200px)); filter: drop-shadow(0 18px 30px rgba(122, 63, 242, .25)); animation: fly 7s ease-in-out infinite; }
+@keyframes fly { 50% { transform: translate(10px, -18px) rotate(3deg); } }
+.c-sat { width: clamp(40px, 4.5vw, 64px); bottom: 10%; left: 47%; animation: float 7.5s ease-in-out infinite; }
+.c-moon { width: clamp(34px, 3.5vw, 52px); bottom: 18%; right: 3%; animation: float 8s ease-in-out infinite reverse; }
+.spark { color: var(--fin); font-size: 1.2rem; animation: twinkle 2.8s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-14px) rotate(4deg); } }
+@keyframes twinkle { 50% { opacity: .2; transform: scale(.6); } }
+@media (max-width: 900px) {
+  .hero { padding-top: 140px; }
+  .c-planet { top: 34px; right: 3%; width: 82px; }
+  .c-rocket { top: 6px; right: calc(4% + 84px); width: 118px; }
+  .c-sat, .c-moon { display: none; }
+}
+.brand { white-space: nowrap; }
+@media (max-width: 640px) { .nav .brand small { display: none; } }
+@media (max-width: 420px) { .nav .btn { padding: .55rem .9rem; font-size: .85rem; } .brand { font-size: .95rem; gap: .4rem; } .brand-mark { width: 32px; } }
+#constellation { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); align-items: end; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.hero-copy { display: grid; gap: 1.6rem; min-width: 0; }
+.hero h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.045em; line-height: .88; }
+.hero h1 .word { display: block; }
+.hero h1 .outline { color: transparent; -webkit-text-stroke: 2px var(--ink); }
+.hero h1 .glow {
+  background: linear-gradient(100deg, var(--nebula) 0%, #4FD6C4 30%, var(--violet) 70%, var(--magenta) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  background-size: 200% 100%; animation: shimmer 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer { to { background-position: 100% 0; } }
+.hero .lede { font-size: var(--step-1); color: var(--muted); max-width: 46ch; }
+.hero .lede strong { color: var(--ink); }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: .8rem; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip {
+  font-family: var(--f-mono); font-size: .78rem; padding: .4rem .8rem; border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 75%, transparent); border: 1px solid var(--line); backdrop-filter: blur(6px);
+}
+.chip b { font-weight: 600; }
+.chip-open { background: var(--nebula); color: #fff; border-color: transparent; font-weight: 600; }
+
+.has-deco { position: relative; }
+.deco { position: absolute; pointer-events: none; height: auto; z-index: 0;
+  filter: drop-shadow(0 16px 26px rgba(122, 63, 242, .22)); animation: float 8s ease-in-out infinite; }
+.has-deco .wrap { position: relative; z-index: 1; }
+.deco-planets { width: clamp(150px, 16vw, 230px); top: clamp(1rem, 4vw, 3.5rem); right: max(16px, calc(50% - 600px)); }
+.deco-laptop { width: clamp(150px, 15vw, 220px); top: clamp(2rem, 5vw, 4.5rem); right: max(16px, calc(50% - 590px)); animation-duration: 9s; }
+.deco-wave { width: clamp(130px, 13vw, 190px); top: clamp(2rem, 5vw, 4rem); right: max(16px, calc(50% - 590px)); animation-direction: reverse; }
+@media (max-width: 760px) { .deco-planets, .deco-laptop, .deco-wave { display: none; } }
+.bases-box { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: clamp(1.2rem, 3vw, 2.5rem); align-items: center;
+  background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1.5px dashed color-mix(in srgb, var(--violet) 40%, transparent); border-radius: 28px; padding: clamp(1.5rem, 4vw, 2.6rem); }
+.bases-doc { width: 84px; height: 104px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); color: var(--violet);
+  display: grid; place-items: center; align-content: center; gap: .3rem; box-shadow: 0 16px 30px -18px rgba(122, 63, 242, .5); transform: rotate(-4deg); }
+.bases-doc svg { width: 38px; height: 38px; }
+.bases-doc span { font-family: var(--f-mono); font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .1em; }
+.bases-copy { display: grid; gap: .6rem; min-width: 0; }
+.bases-copy h2 { font-size: var(--step-2); font-weight: 800; }
+.bases-copy p { color: var(--muted); max-width: 60ch; }
+.bases-btn { border-color: var(--violet); color: var(--violet); font-size: 1.05rem; }
+@media (max-width: 760px) { .bases-box { grid-template-columns: minmax(0, 1fr); } .bases-btn { justify-self: start; } }
+.open-sec { padding-top: 0; }
+.open-box { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid var(--line); border-radius: 32px; padding: clamp(1.8rem, 5vw, 4rem); }
+@media (max-width: 900px) { .open-box { grid-template-columns: minmax(0, 1fr); } }
+.open-copy { display: grid; gap: 1.2rem; justify-items: start; min-width: 0; }
+.open-copy h2 { font-size: var(--step-3); font-weight: 800; }
+.open-hl { background: var(--cosmic); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.open-copy p { color: var(--muted); font-size: var(--step-1); max-width: 48ch; }
+.barriers { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; min-width: 0; }
+.barriers li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .4rem 1rem;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: .85rem 1.1rem; }
+.barriers s { color: var(--muted); text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+.barriers span { font-weight: 700; color: var(--climate); display: inline-flex; align-items: center; gap: .4rem; }
+.barriers span::before { content: "✓"; }
+.load-in > * { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+.load-in > *:nth-child(2) { animation-delay: .08s; }
+.load-in > *:nth-child(3) { animation-delay: .16s; }
+.load-in > *:nth-child(4) { animation-delay: .24s; }
+.load-in > *:nth-child(5) { animation-delay: .32s; }
+@keyframes rise { from { transform: translateY(18px); opacity: .4; } }
+
+/* Countdown "mission panel" */
+.panel {
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(1.3);
+  border: 1px solid color-mix(in srgb, var(--surface) 60%, var(--line));
+  border-radius: var(--radius); padding: 1.5rem; display: grid; gap: 1.1rem;
+  box-shadow: 0 30px 60px -30px rgba(40, 30, 90, .25);
+  min-width: 0;
+}
+.panel-top { display: flex; justify-content: space-between; align-items: center; gap: .5rem; font-family: var(--f-mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.panel-top { flex-wrap: wrap; }
+.deadline-title {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-family: var(--f-display); font-weight: 800; font-size: clamp(1.05rem, .9rem + .6vw, 1.35rem);
+  letter-spacing: -0.01em; text-transform: none; color: #fff;
+  background: var(--cosmic); padding: .6rem 1.1rem; border-radius: 999px;
+  box-shadow: 0 10px 26px -10px color-mix(in srgb, var(--magenta) 80%, transparent);
+  animation: glowpulse 2.6s ease-in-out infinite;
+}
+.deadline-title svg { width: 1.2em; height: 1.2em; flex: none; }
+@keyframes glowpulse { 50% { box-shadow: 0 10px 34px -6px color-mix(in srgb, var(--magenta) 95%, transparent); } }
+.live { display: inline-flex; align-items: center; gap: .45rem; color: var(--climate); font-weight: 600; }
+.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+.countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; }
+.cd-cell { background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 14px; padding: .8rem .3rem .6rem; text-align: center; }
+.cd-num { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.cd-lbl { font-family: var(--f-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .35rem; }
+.panel-rows { display: grid; gap: .55rem; font-size: .95rem; }
+.panel-row { display: flex; justify-content: space-between; gap: 1rem; padding-top: .55rem; border-top: 1px dashed var(--line); }
+.panel-row span:first-child { color: var(--muted); }
+.panel-row span:last-child { font-weight: 600; text-align: right; }
+
+/* ---------- Marquee ---------- */
+.marquee { border-block: 1px solid var(--line); background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); overflow: hidden; padding-block: 1.1rem; }
+.marquee-track { display: flex; gap: 2.5rem; width: max-content; animation: scroll 38s linear infinite; }
+.marquee span { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.3rem, 1rem + 1.2vw, 2rem); white-space: nowrap; display: inline-flex; align-items: center; gap: 2.5rem; }
+.marquee span::after { content: "✦"; color: var(--accent); font-size: .7em; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* ---------- Formato (6 días) ---------- */
+.format { display: grid; grid-template-columns: 4fr 1fr 1fr; gap: 12px; }
+.fmt { border-radius: var(--radius); padding: 1.6rem; display: grid; gap: .5rem; align-content: space-between; min-height: 230px; min-width: 0; position: relative; overflow: hidden; }
+.fmt .big { font-family: var(--f-display); font-weight: 800; font-size: clamp(3rem, 2rem + 4vw, 5.5rem); line-height: .9; letter-spacing: -0.04em; }
+.fmt h3 { font-size: var(--step-1); font-weight: 700; }
+.fmt p { color: var(--muted); font-size: .95rem; }
+.fmt-mode { display: inline-flex; align-items: center; gap: .55rem; justify-self: start; font-weight: 700; font-size: clamp(1.05rem, .95rem + .4vw, 1.3rem); color: #4B3BA8; background: rgba(255, 255, 255, .6); padding: .45rem 1rem; border-radius: 999px; }
+.fmt-mode svg { width: 1.2em; height: 1.2em; flex: none; }
+.fmt-learn { background: linear-gradient(140deg, var(--lav), var(--sky)); }
+.fmt-build { background: linear-gradient(160deg, var(--peach), #FFE9D6); }
+.fmt-final { background: var(--ink); color: var(--bg); }
+.fmt-final p { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+.fmt .days { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+@media (max-width: 860px) { .format { grid-template-columns: minmax(0, 1fr); } .fmt { min-height: 0; } }
+
+/* ---------- Tracks ---------- */
+.tracks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .tracks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tracks { grid-template-columns: minmax(0, 1fr); } }
+.track {
+  --c: var(--accent);
+  background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.8rem; display: grid; gap: 1.1rem; align-content: start; position: relative; overflow: hidden;
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;
+  transform-style: preserve-3d; min-width: 0;
+}
+.track::before {
+  content: ""; position: absolute; width: 260px; height: 260px; right: -90px; top: -110px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--c) 28%, transparent), transparent 70%);
+  transition: transform .5s;
+}
+.track:hover { border-color: color-mix(in srgb, var(--c) 45%, var(--line)); box-shadow: 0 28px 50px -28px color-mix(in srgb, var(--c) 60%, transparent); }
+.track:hover::before { transform: scale(1.3); }
+.track-climate { --c: var(--climate); }
+.track-fin { --c: var(--fin); }
+.track-saas { --c: var(--saas); }
+.track-tag { font-family: var(--f-mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--c); font-weight: 600; }
+.track h3 { font-size: 1.35rem; font-weight: 800; }
+.track { padding: 1.4rem !important; gap: .6rem !important; }
+.track-top { display: flex; align-items: center; gap: .8rem; }
+.track-top .track-icon { width: 42px; height: 42px; border-radius: 12px; }
+.track-top .track-icon svg { width: 22px; height: 22px; }
+.track > p { font-size: .95rem; }
+.track-q { font-size: .92rem !important; line-height: 1.5; color: var(--ink) !important; background: color-mix(in srgb, var(--c) 9%, var(--surface)); border-radius: 12px; padding: .75rem .85rem; margin-top: .3rem; }
+.track-edu { --c: var(--violet); } .track-agro { --c: #4F9A2E; }
+.track-own { justify-items: start; }
+.track-own h3 { font-size: 1.25rem; }
+.track ul.v-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.track ul.v-chips li { display: inline-block; }
+.track ul.v-chips li::before { content: none; }
+.track-own .v-chips li { font-size: .8rem; padding: .3rem .65rem; }
+.track-own .v-guide { margin-top: auto; }
+.own-box { margin-top: 14px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(1.2rem, 3vw, 2.5rem); align-items: center;
+  border: 1.5px dashed color-mix(in srgb, var(--violet) 45%, transparent); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--lav) 55%, var(--card)); padding: clamp(1.4rem, 3vw, 2rem); --c: var(--violet); }
+@media (max-width: 800px) { .own-box { grid-template-columns: minmax(0, 1fr); } }
+.own-copy { display: grid; gap: .6rem; justify-items: start; min-width: 0; }
+.own-copy .track-tag { color: var(--violet); }
+.own-copy h3 { font-size: var(--step-2); font-weight: 800; }
+.own-copy p { color: var(--muted); }
+.own-more { display: grid; gap: .7rem; min-width: 0; }
+.v-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.v-chips li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .45rem .85rem; font-weight: 600; font-size: .9rem; }
+.v-chips i { font-style: normal; font-family: var(--f-mono); font-size: .68rem; color: var(--violet); margin-left: .25rem; }
+.v-chips .v-chip-more { background: var(--cosmic); color: #fff; border-color: transparent; }
+.track > p { color: var(--muted); }
+.track-icon { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; background: color-mix(in srgb, var(--c) 14%, var(--surface)); color: var(--c); }
+.track-icon svg { width: 28px; height: 28px; }
+.track ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; font-size: .95rem; }
+.track li { display: flex; gap: .6rem; align-items: baseline; }
+.track li::before { content: "→"; color: var(--c); font-weight: 700; flex: none; }
+.sec-head .rfs-note { font-size: 1rem; color: var(--ink); border-left: 3px solid var(--nebula); padding-left: .9rem; }
+.q-label { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.track ul.questions { gap: .7rem; }
+.track ul.questions li { background: color-mix(in srgb, var(--c) 8%, var(--surface)); border-radius: 12px; padding: .65rem .8rem; line-height: 1.45; }
+.track ul.questions li::before { content: "✦"; font-size: .8rem !important; line-height: 1.9 !important; font-family: var(--f-display); font-weight: 800; font-size: 1.1rem; line-height: 1.2; }
+.build-note { margin-top: 20px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.2rem; align-items: start;
+  border-radius: var(--radius); padding: clamp(1.4rem, 3vw, 2rem); color: #fff; background: var(--cosmic);
+  box-shadow: 0 24px 50px -26px color-mix(in srgb, var(--magenta) 80%, transparent); }
+.build-note h3 { font-size: var(--step-2); font-weight: 800; margin-bottom: .5rem; }
+.build-note p { color: rgba(255, 255, 255, .9); max-width: 80ch; }
+.build-ico { width: 52px; height: 52px; padding: 12px; border-radius: 16px; background: rgba(255, 255, 255, .18); }
+@media (max-width: 560px) { .build-note { grid-template-columns: minmax(0, 1fr); } }
+.track-own { --c: var(--violet); border: 1.5px dashed color-mix(in srgb, var(--violet) 45%, transparent); background: color-mix(in srgb, var(--lav) 55%, var(--card)); }
+.verticals { margin-top: 28px; }
+.verticals-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem 1.2rem; margin-bottom: 1rem; }
+.verticals-title { font-size: var(--step-1); font-weight: 800; }
+.v-guide { border-color: var(--violet); color: var(--violet); padding: .7rem 1.2rem; font-size: .95rem; }
+.v-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.v-grid li { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: .9rem 1rem; display: grid; gap: .2rem; align-content: start; transition: transform .2s, border-color .2s; }
+.v-grid li:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--violet) 40%, var(--line)); }
+.v-grid b { font-family: var(--f-display); font-size: 1.05rem; }
+.v-grid i { font-style: normal; font-family: var(--f-mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--violet); }
+.v-grid span { color: var(--muted); font-size: .9rem; line-height: 1.45; }
+.v-grid .v-more { background: var(--cosmic); border-color: transparent; color: #fff; }
+.v-grid .v-more span { color: rgba(255, 255, 255, .9); }
+.track-label { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: .9rem; border-top: 1px solid var(--line); }
+
+/* ---------- Timeline ---------- */
+.timeline-sec { background: rgba(255, 255, 255, .38); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border-block: 1px solid var(--line); }
+.timeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; position: relative; }
+.day { padding: 1.4rem 1.1rem 1.6rem; display: grid; gap: .7rem; align-content: start; border-left: 1px solid var(--line); position: relative; min-width: 0; }
+.day:first-child { border-left: none; }
+.day-date { display: flex; align-items: baseline; gap: .5rem; }
+.day-num { font-family: var(--f-display); font-weight: 800; font-size: 2.8rem; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.day-dow { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
+.day-kind { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .6rem; border-radius: 999px; justify-self: start; font-weight: 600; }
+.k-learn { background: var(--lav); color: #4B3BA8; }
+.k-build { background: var(--peach); color: #B23A17; }
+.k-final { background: var(--ink); color: var(--bg); }
+.day h3 { font-size: 1.12rem; font-weight: 700; line-height: 1.2; }
+.day p { color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.day-bar { height: 6px; border-radius: 6px; margin-bottom: .4rem; }
+.day.learn .day-bar { background: linear-gradient(90deg, var(--lilac), var(--saas)); }
+.day.build .day-bar { background: linear-gradient(90deg, var(--fin), var(--accent)); }
+.day.final .day-bar { background: var(--ink); }
+.day.final { background: linear-gradient(180deg, color-mix(in srgb, var(--peach) 55%, transparent), transparent); border-radius: 0 var(--radius) var(--radius) 0; }
+.timeline-note { margin-top: 1.5rem; font-family: var(--f-mono); font-size: .8rem; color: var(--muted); }
+@media (max-width: 1000px) {
+  .timeline { grid-template-columns: minmax(0, 1fr); }
+  .day { grid-template-columns: 92px minmax(0, 1fr); column-gap: 1rem; border-left: none; border-top: 1px solid var(--line); padding-inline: .4rem; }
+  .day:first-child { border-top: none; }
+  .day > * { grid-column: 2; }
+  .day .day-date { grid-column: 1; grid-row: 1 / span 4; flex-direction: column; gap: .2rem; }
+  .day .day-bar { display: none; }
+  .day.final { border-radius: var(--radius); }
+}
+
+/* ---------- Prizes ---------- */
+.prizes { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 900px) { .prizes { grid-template-columns: minmax(0, 1fr); } }
+.prize-main {
+  border-radius: calc(var(--radius) + 6px); padding: clamp(1.8rem, 4vw, 3rem); display: grid; gap: 1.3rem; align-content: space-between;
+  background:
+    radial-gradient(60% 80% at 100% 0%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 70%),
+    radial-gradient(50% 70% at 0% 100%, color-mix(in srgb, var(--fin) 45%, transparent), transparent 70%),
+    var(--ink);
+  color: var(--bg); position: relative; overflow: hidden; min-height: 380px; min-width: 0;
+}
+.prize-main .rank { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in srgb, var(--bg) 75%, transparent); }
+.prize-main h3 { font-size: var(--step-3); font-weight: 800; }
+.prize-main p { color: color-mix(in srgb, var(--bg) 78%, transparent); max-width: 48ch; }
+.trophy { font-family: var(--f-display); font-weight: 800; font-size: clamp(6rem, 4rem + 8vw, 11rem); line-height: .8; letter-spacing: -0.06em; position: absolute; right: 1.2rem; bottom: .2rem; color: color-mix(in srgb, var(--bg) 10%, transparent); pointer-events: none; }
+.prize-hero { position: absolute; right: clamp(.5rem, 2vw, 1.5rem); bottom: clamp(.5rem, 2vw, 1.2rem); width: clamp(120px, 14vw, 190px); height: auto; animation: float 7s ease-in-out infinite; pointer-events: none; }
+.prize-main > :not(.trophy):not(.prize-hero) { position: relative; z-index: 1; }
+.prize-main p { max-width: min(48ch, calc(100% - clamp(100px, 13vw, 170px))); }
+.prize-side { display: grid; gap: 16px; min-width: 0; }
+.prize {
+  background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem;
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.1rem; align-items: start;
+}
+.prize-ico { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; }
+.prize-ico svg { width: 24px; height: 24px; }
+.prize h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: .3rem; }
+.prize p { color: var(--muted); font-size: .95rem; }
+
+/* ---------- Mentors ---------- */
+.mentor-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+@media (max-width: 900px) { .mentor-wrap { grid-template-columns: minmax(0, 1fr); } }
+.orbit { position: relative; aspect-ratio: 1; max-width: 460px; width: 100%; margin-inline: auto; }
+.orbit svg { width: 100%; height: 100%; overflow: visible; }
+.orbit .ring { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 4 6; }
+.orbit .spin { transform-origin: 230px 230px; animation: orbit 26s linear infinite; }
+.orbit .spin.rev { animation-duration: 34s; animation-direction: reverse; }
+@keyframes orbit { to { transform: rotate(360deg); } }
+.mentor-points { display: grid; gap: 1.2rem; margin-top: 1.8rem; }
+.mpoint { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 1rem; align-items: start; }
+.mpoint .n { font-family: var(--f-display); font-weight: 800; font-size: 1.6rem; line-height: 1; color: var(--accent); }
+.mpoint h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .2rem; }
+.mpoint p { color: var(--muted); font-size: .95rem; }
+
+/* ---------- Steps ---------- */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+.step { background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: grid; gap: .6rem; align-content: start; min-width: 0; }
+.step::before { counter-increment: s; content: "Paso " counter(s); font-family: var(--f-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.step h3 { font-size: 1.25rem; font-weight: 700; }
+.step p { color: var(--muted); font-size: .95rem; }
+.reqs { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .6rem; }
+.req { display: inline-flex; align-items: center; gap: .5rem; background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 999px; padding: .55rem 1rem; font-weight: 600; font-size: .95rem; }
+.req svg { width: 18px; height: 18px; color: var(--climate); flex: none; }
+
+/* ---------- FAQ ---------- */
+.faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: clamp(2rem, 5vw, 5rem); }
+@media (max-width: 900px) { .faq-grid { grid-template-columns: minmax(0, 1fr); } }
+.faq { display: grid; gap: 10px; }
+.faq details { background: var(--card); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 18px; padding: 0 1.3rem; transition: border-color .2s; }
+.faq details[open] { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.faq summary { cursor: pointer; list-style: none; padding: 1.15rem 0; font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--f-display); font-size: 1.6rem; line-height: 1; color: var(--accent); transition: transform .25s; flex: none; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--muted); padding-bottom: 1.2rem; max-width: 62ch; }
+
+/* ---------- Final CTA ---------- */
+.cta-final { padding-block: clamp(3rem, 6vw, 5rem) clamp(4rem, 8vw, 7rem); }
+.cta-box {
+  border-radius: 36px; padding: clamp(2.2rem, 6vw, 5rem); text-align: left; position: relative; overflow: hidden; isolation: isolate;
+  background: linear-gradient(120deg, var(--peach), var(--lav) 45%, var(--sky) 75%, var(--mint));
+  display: grid; gap: 1.5rem;
+}
+.cta-box h2 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.045em; line-height: .9; }
+.cta-box p { font-size: var(--step-1); color: var(--muted); max-width: 48ch; }
+.cta-box .stars { position: absolute; inset: 0; z-index: -1; opacity: .7;
+  background-image: radial-gradient(var(--surface) 1.2px, transparent 1.6px); background-size: 26px 26px;
+  mask-image: radial-gradient(70% 80% at 85% 20%, #000, transparent 75%); -webkit-mask-image: radial-gradient(70% 80% at 85% 20%, #000, transparent 75%); }
+.cta-astro { position: absolute; right: clamp(1rem, 5vw, 4rem); top: 50%; translate: 0 -50%; width: clamp(110px, 20vw, 260px); height: auto; z-index: -1; animation: float 8s ease-in-out infinite; filter: drop-shadow(0 18px 28px rgba(122, 63, 242, .25)); }
+@media (max-width: 700px) { .cta-astro { top: 1.2rem; translate: none; width: 96px; } }
+.deadline { font-family: var(--f-mono); font-size: .85rem; color: var(--ink); }
+
+footer { border-top: 1px solid var(--line); padding-block: 2.2rem; font-size: .92rem; color: var(--muted); }
+footer .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem 3rem; align-items: start; }
+.foot-brand { display: grid; gap: .5rem; }
+.foot-org { display: grid; gap: .5rem; }
+.foot-org img { width: 170px; height: auto; }
+.foot-label { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+.foot-brand p { color: var(--ink); font-weight: 500; }
+.foot-brand small { font-family: var(--f-mono); font-size: .75rem; }
+.foot-title { font-family: var(--f-display); font-size: 1.15rem; font-weight: 800; color: var(--nebula); margin-bottom: .9rem; }
+.contact { display: flex; flex-wrap: wrap; gap: 1.2rem 2.5rem; margin: 0; }
+.contact dt { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .2rem; }
+.contact dd { margin: 0; color: var(--ink); font-weight: 600; user-select: all; }
+
+/* Toast for placeholder form link */
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  background: var(--ink); color: var(--bg); padding: .85rem 1.2rem; border-radius: 14px; font-weight: 600; font-size: .95rem; transition: .3s; z-index: 100; max-width: calc(100% - 32px); text-align: center; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ================= Mobile ================= */
+.m-cta, .swipe-hint, .track-dots { display: none; }
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
+  section { padding-block: 3.2rem; }
+  .wrap { padding-inline: 16px; }
+  .sec-head { margin-bottom: 1.6rem; gap: .7rem; }
+  .sec-head h2 { font-size: clamp(1.75rem, 1.2rem + 3vw, 2.2rem); }
+  .sec-head p { font-size: 1.02rem; }
+
+  /* lighter glass = smoother scrolling on mid-range phones */
+  .track, .step, .req, .faq details, .cd-cell, .open-box, .bases-box, .prize, .marquee, .timeline-sec, .panel {
+    -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  :root { --card: rgba(255, 255, 255, .88); }
+
+  /* hero: compact so the countdown rises */
+  .hero { padding-top: 104px; padding-bottom: 2.4rem; }
+  .c-rocket { width: 96px; top: 8px; right: calc(4% + 72px); }
+  .c-planet { width: 66px; top: 26px; }
+  .hero-copy { gap: 1.1rem; }
+  .hero h1 { font-size: clamp(3rem, 2rem + 6vw, 3.6rem); }
+  .hero .lede { font-size: 1.02rem; }
+  .hero-ctas .btn { flex: 1 1 auto; }
+  .hero-ctas a[href="#cronograma"] { display: none; }
+  .hero-meta .chip { font-size: .72rem; }
+  .hero-meta .chip:nth-child(2), .hero-meta .chip:nth-child(3) { display: none; }
+  .panel { padding: 1.1rem; gap: .9rem; }
+  .deadline-title { font-size: 1rem; padding: .5rem .9rem; }
+  .cd-num { font-size: 1.7rem; }
+  .panel-rows { font-size: .9rem; }
+  .btn { padding: 1rem 1.4rem; }
+  .btn-primary { font-size: 1.05rem; }
+  .nav .btn { padding: .6rem 1rem; font-size: .9rem; }
+
+  /* formato */
+  .fmt { padding: 1.3rem; gap: .4rem; }
+  .fmt .big { font-size: 2.8rem; }
+
+  /* retos: swipeable carousel */
+  .v-chips li { font-size: .85rem; }
+  .tracks { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    margin-inline: -16px; padding: 4px 16px 10px; scroll-padding-inline: 16px; scrollbar-width: none; }
+  .tracks::-webkit-scrollbar { display: none; }
+  .track { flex: 0 0 82%; scroll-snap-align: start; }
+  .swipe-hint { display: flex; align-items: center; gap: .5rem; font-family: var(--f-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--violet); margin-bottom: .8rem; }
+  .swipe-hint span { animation: nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateX(6px); } }
+  .v-guide { width: 100%; }
+  .build-note { padding: 1.3rem; }
+  .build-note h3 { font-size: 1.3rem; }
+
+  /* cronograma */
+  .day { grid-template-columns: 64px minmax(0, 1fr); padding-block: 1.1rem; }
+  .day-num { font-size: 2.2rem; }
+
+  /* premios, mentores, CTA */
+  .prize-main { min-height: 0; padding: 1.5rem 1.5rem 7.5rem; }
+  .prize-hero { width: 104px; }
+  .prize-main p { max-width: none; }
+  .trophy { font-size: 6rem; }
+  .orbit { max-width: 230px; }
+  .open-box, .bases-box { padding: 1.4rem; border-radius: 22px; }
+  .barriers li { padding: .7rem .9rem; font-size: .95rem; }
+  .cta-box { padding: 1.6rem 1.4rem 2rem; border-radius: 26px; }
+  .cta-box h2 { font-size: 2.6rem; padding-right: 90px; }
+  .cta-final { padding-bottom: 6rem; }
+  footer { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
+
+  /* sticky bottom registration bar */
+  .m-cta { display: flex; position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); z-index: 60;
+    align-items: center; justify-content: space-between; gap: .8rem; padding: .55rem .55rem .55rem 1rem; border-radius: 999px;
+    background: rgba(23, 21, 43, .92); color: #fff; box-shadow: 0 14px 34px -12px rgba(23, 21, 43, .6);
+    transform: translateY(140%); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .m-cta.show { transform: none; }
+  .m-cta-time { display: grid; line-height: 1.15; min-width: 0; }
+  .m-cta-time small { font-family: var(--f-mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--lilac); }
+  .m-cta-time b { font-family: var(--f-display); font-size: 1.05rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .m-cta .btn { padding: .75rem 1.2rem; font-size: .98rem; flex: none; }
+  .toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<div class="space" aria-hidden="true"><canvas id="starfield"></canvas></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Start Up Nebula, inicio">
+      <img class="brand-mark" src="assets/astro-rocket.webp" alt="" width="40" height="45">
+      <span>Start Up Nebula <small>by Start Up Club USIL</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#retos">Retos</a>
+      <a href="#cronograma">Cronograma</a>
+      <a href="#premios">Premios</a>
+      <a href="#mentores">Mentores</a>
+      <a href="#bases">Bases</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary js-form" href="#">Inscríbete</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-sky" aria-hidden="true"></div>
+  <canvas id="constellation" aria-hidden="true"></canvas>
+  <div class="cosmos" aria-hidden="true">
+    <svg class="c-planet" viewBox="0 0 120 120"><defs><linearGradient id="pl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD9C7"/><stop offset=".55" stop-color="#E39A0B"/><stop offset="1" stop-color="#C346D6"/></linearGradient></defs><ellipse cx="60" cy="64" rx="56" ry="15" fill="none" stroke="#B9A8FF" stroke-width="5" transform="rotate(-16 60 60)"/><circle cx="60" cy="60" r="34" fill="url(#pl)"/><path d="M27 52a34 34 0 0 1 66 0" fill="url(#pl)"/><circle cx="48" cy="48" r="5" fill="#fff" opacity=".45"/><circle cx="70" cy="74" r="3.5" fill="#fff" opacity=".3"/></svg>
+    <img class="c-rocket" src="assets/astro-rocket.webp" alt="" width="520" height="585">
+    <svg class="c-sat" viewBox="0 0 60 60"><g transform="rotate(-25 30 30)"><rect x="4" y="24" width="16" height="12" rx="2" fill="#3D7BF2"/><rect x="40" y="24" width="16" height="12" rx="2" fill="#3D7BF2"/><path d="M9 24v12M15 24v12M45 24v12M51 24v12" stroke="#D3E3FF" stroke-width="1.2"/><rect x="22" y="21" width="16" height="18" rx="4" fill="#E6DEFF" stroke="#17152B" stroke-width="2"/><path d="M30 21v-8" stroke="#17152B" stroke-width="2"/><circle cx="30" cy="11" r="3" fill="#FF5B3A"/></g></svg>
+    <svg class="c-moon" viewBox="0 0 40 40"><path d="M27 4a17 17 0 1 0 9 26A14 14 0 0 1 27 4Z" fill="#E39A0B"/></svg>
+    <span class="spark" style="top:30%;left:52%">✦</span>
+    <span class="spark" style="top:8%;left:38%;animation-delay:.8s;color:var(--nebula)">✦</span>
+    <span class="spark" style="bottom:22%;left:3%;animation-delay:1.4s;color:var(--violet)">✦</span>
+    <span class="spark" style="top:58%;right:40%;animation-delay:2s">✦</span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy load-in">
+      <span class="eyebrow">Start Up Nebula · Edición Hackathon</span>
+      <h1 id="hero-title">
+        <span class="word glow">Nebula</span>
+        <span class="word outline">Hacka</span>
+        <span class="word">thon&nbsp;’26</span>
+      </h1>
+      <p class="lede">Una semana para crear, junto a otros estudiantes, una solución a un problema real. Aprende en talleres, constrúyela con ayuda de mentores y preséntala al jurado. Tú eliges el sector: <strong>finanzas, educación, medio ambiente, el campo… o el que propongas</strong>.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary js-form" href="#"><svg class="rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1Z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2Z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg> Inscríbete ahora</a>
+        <a class="btn btn-ghost js-bases" href="#bases" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>Ver bases</a>
+        <a class="btn btn-ghost" href="#cronograma">Ver cronograma</a>
+      </div>
+      <div class="hero-meta">
+        <span class="chip"><b>9 – 14 nov 2026</b></span>
+        <span class="chip">Semana 13 académica</span>
+        <span class="chip">Campus USIL · Lima</span>
+        <span class="chip chip-open">✦ Cualquier ciclo y carrera · Sin experiencia previa</span>
+      </div>
+    </div>
+
+    <aside class="panel load-in" aria-label="Cuenta regresiva al cierre de inscripciones">
+      <div class="panel-top">
+        <span class="deadline-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>Cierre de inscripciones en</span>
+        <span class="live" id="reg-status">Inscripciones abiertas</span>
+      </div>
+      <div class="countdown" id="countdown" role="timer" aria-live="off">
+        <div class="cd-cell"><div class="cd-num" data-u="d">--</div><div class="cd-lbl">Días</div></div>
+        <div class="cd-cell"><div class="cd-num" data-u="h">--</div><div class="cd-lbl">Horas</div></div>
+        <div class="cd-cell"><div class="cd-num" data-u="m">--</div><div class="cd-lbl">Min</div></div>
+        <div class="cd-cell"><div class="cd-num" data-u="s">--</div><div class="cd-lbl">Seg</div></div>
+      </div>
+      <div class="panel-rows">
+        <div class="panel-row"><span>Talleres (virtuales)</span><span>Lun 9, Mié 11 y Jue 12 nov</span></div>
+        <div class="panel-row"><span>Día de construcción (presencial)</span><span>Vie 13 nov</span></div>
+        <div class="panel-row"><span>Gran Final</span><span>Sáb 14 nov</span></div>
+        <div class="panel-row"><span>Cierre de inscripciones</span><span>Mié 4 nov · 8:00 p. m.</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Finanzas</span><span>Educación</span><span>Medio ambiente</span><span>Agro</span><span>Salud</span><span>Propón tu órbita</span><span>Red Intergaláctica</span><span>Mentoría 1:3</span><span>Crea tu solución</span><span>Preséntala al jurado</span><span>Cualquier ciclo</span><span>Cualquier carrera</span><span>Sin experiencia previa</span><span>USIL Ventures</span><span>Innovación</span>
+    <span>Finanzas</span><span>Educación</span><span>Medio ambiente</span><span>Agro</span><span>Salud</span><span>Propón tu órbita</span><span>Red Intergaláctica</span><span>Mentoría 1:3</span><span>Crea tu solución</span><span>Preséntala al jurado</span><span>Cualquier ciclo</span><span>Cualquier carrera</span><span>Sin experiencia previa</span><span>USIL Ventures</span><span>Innovación</span>
+  </div>
+</div>
+
+<!-- ============ FORMATO ============ -->
+<section aria-labelledby="formato-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Plan de vuelo</span>
+      <h2 id="formato-title">Aprende, construye y despega en una sola semana.</h2>
+      <p>Una hackathon es un reto en el que, en pocos días, creas una solución a un problema real. En Nebula no vas a ciegas: primero te enseñamos cómo hacerlo, luego construyes con un mentor al lado y al final presentas tu solución a un jurado.</p>
+    </div>
+    <div class="format">
+      <article class="fmt fmt-learn">
+        <span class="days">Lun 9 · Mié 11 · Jue 12</span>
+        <div class="big">3 talleres</div>
+        <span class="fmt-mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Virtuales · 1 hora cada uno</span>
+        <div>
+          <h3>Formación intensiva</h3>
+          <p>Te llevan del problema que identificaste a un prototipo y a una presentación de tu solución.</p>
+        </div>
+      </article>
+      <article class="fmt fmt-build">
+        <span class="days">Viernes</span>
+        <div class="big">1</div>
+        <div>
+          <h3>Día de construcción</h3>
+          <p>Avanzas tu prototipo y tu presentación con consejos cercanos de mentores. Obligatorio.</p>
+        </div>
+      </article>
+      <article class="fmt fmt-final">
+        <span class="days">Sábado</span>
+        <div class="big">1</div>
+        <div>
+          <h3>Gran Final</h3>
+          <p>Presentas al jurado y se premia a los mejores proyectos. Obligatorio.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABIERTO A TODOS ============ -->
+<section class="open-sec" aria-labelledby="open-title">
+  <div class="wrap">
+    <div class="open-box">
+      <div class="open-copy">
+        <span class="eyebrow">Abierto a toda la tripulación</span>
+        <h2 id="open-title">No necesitas<br><span class="open-hl">experiencia previa.</span></h2>
+        <p>La Nebula Hackathon está hecha para que cualquier estudiante se anime. Durante toda la semana nosotros te guiamos: talleres, mentores y acompañamiento hasta la final.</p>
+        <a class="btn btn-primary js-form" href="#">No pierdas la oportunidad <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <ul class="barriers" aria-label="Cosas que no importan para postular">
+        <li><s>¿De qué ciclo eres?</s><span>Cualquier ciclo</span></li>
+        <li><s>¿De qué carrera eres?</s><span>Cualquier carrera</span></li>
+        <li><s>¿Ya emprendiste antes?</s><span>No es necesario</span></li>
+        <li><s>¿Creaste alguna herramienta digital?</s><span>Te enseñamos</span></li>
+        <li><s>¿Estuviste en otra hackathon?</s><span>Esta puede ser la primera</span></li>
+        <li><s>¿Tienes equipo?</s><span>Solo o en equipo</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RETOS ============ -->
+<section id="retos" class="has-deco" aria-labelledby="retos-title" style="padding-top:0">
+  <img class="deco deco-planets" src="assets/astro-planets.webp" alt="" width="420" height="531" loading="lazy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Los retos · Tú eliges la órbita</span>
+      <h2 id="retos-title">Elige tu órbita… o propón la tuya.</h2>
+      <p>Una <strong>órbita</strong> (en el mundo emprendedor le dicen <em>vertical de negocio</em>) es el sector en el que vas a trabajar: el dinero, la educación, el campo, la salud… En vez de intentar resolverlo todo, te enfocas en un problema real de un sector específico.</p>
+      <p class="rfs-note">Te sugerimos cinco verticales con un problema real para empezar a pensar. Si ninguna te convence, propón la tuya.</p>
+    </div>
+    <p class="swipe-hint" aria-hidden="true">Desliza para ver las verticales <span>→</span></p>
+    <div class="tracks" id="tracks">
+      <article class="track track-climate js-tilt">
+        <div class="track-top">
+          <div class="track-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.2-6.1 2.4-.5 4.9-2 5.8-4.9"/></svg></div>
+          <span class="track-tag">Climatech</span>
+        </div>
+        <h3>Medio ambiente</h3>
+        <p>Basura, agua, energía y contaminación en nuestras ciudades.</p>
+        <p class="track-q">Casi toda la basura de Lima termina enterrada, aunque mucho aún tiene valor. ¿Qué haría que reciclar sea más fácil que simplemente botar?</p>
+      </article>
+      <article class="track track-fin js-tilt">
+        <div class="track-top">
+          <div class="track-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></svg></div>
+          <span class="track-tag">Fintech</span>
+        </div>
+        <h3>Dinero y finanzas</h3>
+        <p>Ahorrar, pedir prestado, cobrar, pagar y llevar las cuentas.</p>
+        <p class="track-q">Millones de peruanos aún piden préstamos al "gota a gota" porque los bancos no los ven. ¿Cómo sería un crédito pensado para ellos desde el inicio?</p>
+      </article>
+      <article class="track track-edu js-tilt">
+        <div class="track-top">
+          <div class="track-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+          <span class="track-tag">Edtech</span>
+        </div>
+        <h3>Educación</h3>
+        <p>Nuevas formas de aprender, enseñar y prepararse para el trabajo.</p>
+        <p class="track-q">En el Perú, aprender bien todavía depende mucho de dónde vives y de cuánto puedes pagar. ¿Cómo sería una educación de calidad al alcance de cualquiera?</p>
+      </article>
+      <article class="track track-saas js-tilt">
+        <div class="track-top">
+          <div class="track-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 0 0 4.3 12.5 3.5 3.5 0 0 0 6.5 19Z"/><path d="m10 13 2 2 3-3"/></svg></div>
+          <span class="track-tag">SaaS</span>
+        </div>
+        <h3>Herramientas digitales</h3>
+        <p>Apps y plataformas que ahorran tiempo a negocios y personas.</p>
+        <p class="track-q">Muchos negocios pequeños aún anotan pedidos, citas e inventario a mano. ¿Qué tareas de su día podrían simplemente desaparecer?</p>
+      </article>
+      <article class="track track-agro js-tilt">
+        <div class="track-top">
+          <div class="track-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10M12 20v-8"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7ZM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5Z"/></svg></div>
+          <span class="track-tag">Agrotech</span>
+        </div>
+        <h3>Agro y campo</h3>
+        <p>Tecnología para producir, cuidar y vender mejor lo que sale del campo.</p>
+        <p class="track-q">Muchos pequeños agricultores deciden qué sembrar de memoria y venden su cosecha a intermediarios al precio que les ofrecen. ¿Qué pasaría si pudieran planificar y vender mejor?</p>
+      </article>
+      <article class="track track-own">
+        <div class="track-top">
+          <div class="track-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></div>
+          <span class="track-tag">Tu vertical</span>
+        </div>
+        <h3>¿No te mueve ninguna? Propón tu vertical.</h3>
+        <p>Trae un problema de otro sector: de tu carrera, tus prácticas, el negocio de tu familia o algo que vives todos los días.</p>
+        <ul class="v-chips" aria-label="Otras verticales">
+          <li>E-commerce</li><li>Healthtech</li><li>Proptech</li><li>Legaltech</li><li>HRtech</li><li>Martech</li><li>Foodtech</li><li>Femtech</li><li class="v-chip-more">¡y más!</li>
+        </ul>
+        <a class="btn btn-ghost v-guide" id="verticals-link" href="https://drive.google.com/file/d/12FTXV95XX363cSAUGbfODNxjUXMewUz7/view" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>Ver guía de verticales</a>
+      </article>
+    </div>
+    <div class="build-note">
+      <svg class="build-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8Z"/></svg>
+      <div>
+        <h3>En todas las órbitas se construye. Esto no es una ideatón.</h3>
+        <p>No basta con una idea en diapositivas. Elijas el tema que elijas, el viernes construyes una <strong>primera versión de tu solución</strong> y el sábado la muestras funcionando al jurado. Puede ser una app o página web sencilla, un servicio que simulas con personas reales, una maqueta o un prototipo físico. En los talleres te enseñamos cómo hacerlo, aunque nunca hayas construido nada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CRONOGRAMA ============ -->
+<section id="cronograma" class="timeline-sec has-deco" aria-labelledby="crono-title">
+  <img class="deco deco-laptop" src="assets/astro-laptop.webp" alt="" width="414" height="406" loading="lazy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cronograma · Semana 13</span>
+      <h2 id="crono-title">Misión de Lanzamiento: del 9 al 14 de noviembre.</h2>
+      <p>Cada día tiene un objetivo. Al final de la semana tendrás un problema bien entendido, una idea de cómo funcionaría tu solución, una primera versión y una presentación lista.</p>
+    </div>
+    <ol class="timeline" style="list-style:none;margin:0;padding:0">
+      <li class="day learn">
+        <div class="day-bar" aria-hidden="true"></div>
+        <div class="day-date"><span class="day-num">09</span><span class="day-dow">Lun<br>nov</span></div>
+        <span class="day-kind k-learn">Taller virtual · 1 hora</span>
+        <h3>Inauguración y el problema</h3>
+        <p>Presentación de Nebula. Luego, el taller: cómo identificar problemas en un sector para aterrizar en una idea.</p>
+      </li>
+      <li class="day learn">
+        <div class="day-bar" aria-hidden="true"></div>
+        <div class="day-date"><span class="day-num">11</span><span class="day-dow">Mié<br>nov</span></div>
+        <span class="day-kind k-learn">Taller virtual · 1 hora</span>
+        <h3>Crea tu prototipo</h3>
+        <p>Herramientas sin código e IA para construir rápido un prototipo. No necesitas saber programar: te enseñamos herramientas actuales para armarlo de forma sencilla.</p>
+      </li>
+      <li class="day learn">
+        <div class="day-bar" aria-hidden="true"></div>
+        <div class="day-date"><span class="day-num">12</span><span class="day-dow">Jue<br>nov</span></div>
+        <span class="day-kind k-learn">Taller virtual · 1 hora</span>
+        <h3>Aprende a presentar tu idea</h3>
+        <p>Cómo contar tu idea en 4 minutos y convencer a un jurado.</p>
+      </li>
+      <li class="day build">
+        <div class="day-bar" aria-hidden="true"></div>
+        <div class="day-date"><span class="day-num">13</span><span class="day-dow">Vie<br>nov</span></div>
+        <span class="day-kind k-build">Presencial · obligatorio</span>
+        <h3>Día de construcción</h3>
+        <p>Jornada presencial en el campus. Cada mentor acompaña a 2 o 3 proyectos: te ayuda a revisar el problema, cuestiona tu idea y te prepara para la presentación, sin hacer el trabajo por ti.</p>
+      </li>
+      <li class="day final">
+        <div class="day-bar" aria-hidden="true"></div>
+        <div class="day-date"><span class="day-num">14</span><span class="day-dow">Sáb<br>nov</span></div>
+        <span class="day-kind k-final">Gran Final · obligatorio</span>
+        <h3>Presentación y premiación</h3>
+        <p>Presentas tu solución al jurado y se anuncia al ganador. Asistencia presencial y obligatoria.</p>
+      </li>
+    </ol>
+    <p class="timeline-note">* Los talleres son virtuales y duran 1 hora cada uno. Horarios, enlaces y ponentes se anunciarán a los inscritos.</p>
+  </div>
+</section>
+
+<!-- ============ PREMIOS ============ -->
+<section id="premios" aria-labelledby="premios-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Premios</span>
+      <h2 id="premios-title">¿Por qué Nebula?</h2>
+      <p>Los beneficios que llevarán tu proyecto al siguiente nivel: visibilidad, acompañamiento real y un primer paso para llevar tu idea fuera del aula.</p>
+    </div>
+    <div class="prizes">
+      <article class="prize-main">
+        <span class="rank">Exclusivo para el ganador</span>
+        <div style="display:grid;gap:1rem">
+          <h3>Presenta tu solución ante la Facultad de Ciencias Empresariales.</h3>
+          <p>El ganador expondrá su proyecto frente a autoridades y docentes de la facultad. Una vitrina para que tu idea sea vista por quienes pueden impulsarla.</p>
+        </div>
+        <a class="btn btn-primary js-form" href="#" style="justify-self:start">Quiero competir <span class="arrow" aria-hidden="true">→</span></a>
+        <span class="trophy" aria-hidden="true">#1</span>
+        <img class="prize-hero" src="assets/astro-cape.webp" alt="" width="397" height="430" loading="lazy">
+      </article>
+      <div class="prize-side">
+        <article class="prize">
+          <div class="prize-ico" style="background:var(--mint);color:var(--climate)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1Z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2Z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg>
+          </div>
+          <div>
+            <h3>Asesoría con USIL Ventures</h3>
+            <p>Los proyectos pueden recibir asesoría de la incubadora de la universidad para definir sus siguientes pasos.</p>
+          </div>
+        </article>
+        <article class="prize">
+          <div class="prize-ico" style="background:var(--sky);color:var(--saas)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          </div>
+          <div>
+            <h3>Exposición y certificado</h3>
+            <p>Certificado de participación y difusión de los proyectos en los canales del Start Up Club.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENTORES ============ -->
+<section id="mentores" class="timeline-sec" aria-labelledby="mentores-title">
+  <div class="wrap mentor-wrap">
+    <div class="orbit" aria-hidden="true">
+      <svg viewBox="0 0 460 460">
+        <circle class="ring" cx="230" cy="230" r="110"/>
+        <circle class="ring" cx="230" cy="230" r="190"/>
+        <g class="spin">
+          <circle cx="340" cy="230" r="22" fill="var(--lav)"/><circle cx="340" cy="230" r="8" fill="var(--saas)"/>
+          <circle cx="175" cy="135" r="22" fill="var(--mint)"/><circle cx="175" cy="135" r="8" fill="var(--climate)"/>
+          <circle cx="175" cy="325" r="22" fill="var(--peach)"/><circle cx="175" cy="325" r="8" fill="var(--fin)"/>
+        </g>
+        <g class="spin rev">
+          <circle cx="420" cy="230" r="6" fill="var(--lilac)"/>
+          <circle cx="40" cy="230" r="5" fill="var(--accent)"/>
+          <circle cx="230" cy="40" r="4" fill="var(--saas)"/>
+          <circle cx="230" cy="420" r="6" fill="var(--climate)"/>
+        </g>
+        <circle cx="230" cy="230" r="58" fill="var(--ink)"/>
+        <text x="230" y="226" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="26" fill="var(--bg)">1 : 3</text>
+        <text x="230" y="250" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1" fill="var(--lilac)">MENTOR : PROYECTOS</text>
+      </svg>
+    </div>
+    <div>
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Tripulación de mentores</span>
+        <h2 id="mentores-title">Nadie despega solo.</h2>
+        <p>Durante el día de construcción, cada mentor acompaña a un grupo pequeño de proyectos para darte consejos cercanos y constantes.</p>
+      </div>
+      <div class="mentor-points">
+        <div class="mpoint"><span class="n">2–3</span><div><h3>Proyectos por mentor</h3><p>Según el número de inscritos. Así cada proyecto recibe atención directa.</p></div></div>
+        <div class="mpoint"><span class="n">◎</span><div><h3>Perfiles del ecosistema</h3><p>Emprendedores, docentes y profesionales de tecnología, negocios y finanzas.</p></div></div>
+        <div class="mpoint"><span class="n">→</span><div><h3>Consejos que puedes aplicar</h3><p>Te ayudan a mejorar tu idea, resolver dudas y preparar tu presentación para la final.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CÓMO PARTICIPAR ============ -->
+<section id="participa" class="has-deco" aria-labelledby="participa-title">
+  <img class="deco deco-wave" src="assets/astro-wave.webp" alt="" width="420" height="604" loading="lazy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Requisitos de abordaje</span>
+      <h2 id="participa-title">¿Qué necesito para ingresar?</h2>
+      <p>No necesitas tener un negocio ni saber programar. El emprendimiento no tiene límites académicos: necesitas ganas de resolver un problema.</p>
+    </div>
+    <div class="steps">
+      <article class="step"><h3>Inscríbete</h3><p>Completa el formulario hasta el miércoles 4 de noviembre a las 8:00 p. m.</p></article>
+      <article class="step"><h3>Elige tu modalidad</h3><p>Participa de forma individual o junto a tu equipo.</p></article>
+      <article class="step"><h3>Fórmate</h3><p>Asiste a los talleres de lunes a jueves y elige tu reto.</p></article>
+      <article class="step"><h3>Construye y presenta</h3><p>Construye el viernes con tu mentor y presenta el sábado.</p></article>
+    </div>
+    <div class="reqs">
+      <span class="req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pregrado USIL, de cualquier ciclo</span>
+      <span class="req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Matrícula vigente este semestre</span>
+      <span class="req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cualquier carrera</span>
+      <span class="req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sin experiencia previa</span>
+      <span class="req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Individual o en equipo</span>
+      <span class="req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Participación gratuita</span>
+      <span class="req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Asistencia presencial viernes y sábado</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BASES ============ -->
+<section id="bases" aria-labelledby="bases-title" style="padding-top:0">
+  <div class="wrap">
+    <div class="bases-box">
+      <div class="bases-doc" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+        <span>PDF</span>
+      </div>
+      <div class="bases-copy">
+        <span class="eyebrow">Bases del programa</span>
+        <h2 id="bases-title">Conoce todas las reglas antes de despegar.</h2>
+        <p>Requisitos, cronograma, criterios de evaluación, premios y condiciones de participación de la Nebula Hackathon 2026, en un solo documento.</p>
+      </div>
+      <a class="btn btn-ghost bases-btn" id="bases-link" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        Ver bases del programa
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" aria-labelledby="faq-title" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div class="sec-head">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2 id="faq-title">¿Dudas antes de despegar?</h2>
+      <p>Si tu pregunta no está aquí, escríbenos a <strong>startup.club@usil.edu.pe</strong> o por Instagram a Start Up Club.</p>
+    </div>
+    <div class="faq">
+      <details><summary>¿Quiénes pueden participar?</summary><p>Estudiantes de pregrado de USIL de cualquier ciclo y de cualquier carrera, con matrícula vigente en el semestre actual. No necesitas experiencia previa.</p></details>
+      <details><summary>Nunca he emprendido ni he ido a una hackathon. ¿Puedo postular?</summary><p>¡Claro! No importa si nunca emprendiste, si nunca creaste una herramienta digital o si esta es tu primera hackathon. Los talleres y los mentores están para guiarte paso a paso. No pierdas la oportunidad.</p></details>
+      <details><summary>¿Tiene algún costo participar?</summary><p>No. La Nebula Hackathon es gratuita para estudiantes de USIL.</p></details>
+      <details><summary>¿Necesito saber programar?</summary><p>No. Los mejores proyectos combinan perfiles de negocios, diseño, comunicación y tecnología. En los talleres aprenderás herramientas fáciles para crear tu solución sin escribir código.</p></details>
+      <details><summary>¿Puedo participar solo?</summary><p>Sí. Puedes postular de forma individual o con tu equipo.</p></details>
+      <details><summary>¿Debo llegar con una idea?</summary><p>No es necesario. El primer taller está pensado para ayudarte a elegir un sector y encontrar un problema real dentro de él. También puedes proponer tu propia órbita.</p></details>
+      <details><summary>¿Los talleres son obligatorios?</summary><p>Te recomendamos asistir a todos: cada uno prepara una parte de lo que presentarás en la final. El día de construcción (viernes 13) y la final (sábado 14) son presenciales y obligatorios.</p></details>
+      <details><summary>¿Cómo se elige al ganador?</summary><p>Un jurado evaluará qué tan bien entiendes el problema, qué tan útil es tu solución, cómo funcionaría, la primera versión que construiste y tu presentación.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final" aria-labelledby="cta-title">
+  <div class="wrap">
+    <div class="cta-box">
+      <div class="stars" aria-hidden="true"></div>
+      <img class="cta-astro" src="assets/astro-star.webp" alt="" width="309" height="381" loading="lazy">
+      <span class="eyebrow">Inscripciones abiertas · Cupos limitados por mentor</span>
+      <h2 id="cta-title">¿Listo para<br>despegar?</h2>
+      <p>Únete a la próxima flota de naves estelares. Seas del ciclo y la carrera que seas, con o sin experiencia: nosotros te guiamos. No pierdas la oportunidad.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary js-form" href="#"><svg class="rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1Z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2Z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg> Únete a la misión</a>
+        <a class="btn btn-ghost" href="#faq">Ver preguntas</a>
+      </div>
+      <span class="deadline">Cierre de inscripciones: miércoles 4 de noviembre de 2026, 8:00 p. m.</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-brand">
+      <span class="brand"><img class="brand-mark" src="assets/astro-rocket.webp" alt="" width="40" height="45"><span>Start Up Nebula</span></span>
+      <p>Donde la creatividad despega y los proyectos aterrizan.</p>
+      <small>© 2026 Start Up Club USIL</small>
+    </div>
+    <div class="foot-org">
+      <span class="foot-label">Organiza</span>
+      <img src="assets/startup-club-logo-blue.webp" alt="Start Up Club" width="560" height="317" loading="lazy">
+    </div>
+    <div class="foot-contact"><h3 class="foot-title">Coordenadas de la Base</h3><dl class="contact">
+      <div><dt>Correo</dt><dd>startup.club@usil.edu.pe</dd></div>
+      <div><dt>WhatsApp / teléfono</dt><dd>+51 987 806 879</dd></div>
+      <div><dt>Instagram</dt><dd>Start Up Club</dd></div>
+    </dl></div>
+  </div>
+</footer>
+
+<div class="m-cta" id="m-cta">
+  <div class="m-cta-time"><small>Cierre de inscripciones</small><b id="m-cta-count">--d --h --m</b></div>
+  <a class="btn btn-primary js-form" href="#">Inscríbete</a>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ===== Pega aquí el link del formulario de inscripción ===== */
+const FORM_URL = "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=HOS-ePx7GEuCKoDNF0MNXg5eXD6B7PFJn4zWmwmycBJUMldJWEhNSEVIVUhXRDJEME9XQlVMTDlGNS4u";
+
+/* ===== Enlace a las bases del programa ===== */
+const BASES_URL = "https://drive.google.com/file/d/1KSdc1sEtIjBO3mZ-o9gPOwFg0n71DKVs/view";
+
+/* Cierre de inscripciones: miércoles 4 nov 2026, 8:00 p. m. hora de Lima (UTC-5) */
+const DEADLINE = new Date("2026-11-04T20:00:00-05:00");
+
+(function () {
+  // Registration buttons
+  const toast = document.getElementById("toast");
+  let toastTimer;
+  document.querySelectorAll(".js-form").forEach(function (a) {
+    if (FORM_URL && FORM_URL !== "#") {
+      a.href = FORM_URL; a.target = "_blank"; a.rel = "noopener";
+    } else {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        toast.textContent = "El formulario de inscripción se publicará muy pronto.";
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2800);
+      });
+    }
+  });
+
+  // Bases PDF link
+  document.querySelectorAll("#bases-link, .js-bases").forEach(function (a) { a.href = BASES_URL; });
+
+  // Countdown
+  const cells = {};
+  document.querySelectorAll("#countdown [data-u]").forEach(function (el) { cells[el.dataset.u] = el; });
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function tick() {
+    let diff = Math.max(0, DEADLINE - Date.now());
+    if (diff === 0) document.getElementById("reg-status").textContent = "Inscripciones cerradas";
+    const d = Math.floor(diff / 864e5); diff -= d * 864e5;
+    const h = Math.floor(diff / 36e5); diff -= h * 36e5;
+    const m = Math.floor(diff / 6e4); diff -= m * 6e4;
+    const s = Math.floor(diff / 1e3);
+    cells.d.textContent = pad(d); cells.h.textContent = pad(h); cells.m.textContent = pad(m); cells.s.textContent = pad(s);
+    const mc = document.getElementById("m-cta-count");
+    if (mc) mc.textContent = diff + d + h + m + s === 0 ? "Cerradas" : d + "d " + pad(h) + "h " + pad(m) + "m";
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Mobile sticky bar: show after the hero, hide at the final CTA
+  (function () {
+    const bar = document.getElementById("m-cta");
+    const hero = document.querySelector(".hero"), finalCta = document.querySelector(".cta-final");
+    if (!bar || !("IntersectionObserver" in window)) return;
+    let pastHero = false, atFinal = false;
+    function update() { bar.classList.toggle("show", pastHero && !atFinal); }
+    new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting; update(); }).observe(hero);
+    new IntersectionObserver(function (e) { atFinal = e[0].isIntersecting; update(); }, { threshold: .15 }).observe(finalCta);
+  })();
+
+  // Tracks carousel dots
+  (function () {
+    const track = document.getElementById("tracks"), dots = document.querySelectorAll("#track-dots button");
+    if (!track || !dots.length) return;
+    function current() {
+      const cards = track.children; let best = 0, bestD = Infinity;
+      for (let i = 0; i < cards.length; i++) { const d = Math.abs(cards[i].getBoundingClientRect().left - track.getBoundingClientRect().left - 16); if (d < bestD) { bestD = d; best = i; } }
+      dots.forEach(function (b, i) { b.setAttribute("aria-current", i === best ? "true" : "false"); });
+    }
+    track.addEventListener("scroll", function () { requestAnimationFrame(current); }, { passive: true });
+    dots.forEach(function (b, i) { b.addEventListener("click", function () { track.scrollTo({ left: track.children[i].offsetLeft - 16, behavior: "smooth" }); }); });
+  })();
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Card tilt
+  if (!reduce && window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll(".js-tilt").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        card.style.transform = "perspective(900px) rotateY(" + (x * 7) + "deg) rotateX(" + (-y * 7) + "deg) translateY(-4px)";
+      });
+      card.addEventListener("pointerleave", function () { card.style.transform = ""; });
+    });
+  }
+
+  // Daylight starfield: twinkling stars with gentle scroll parallax + occasional shooting stars
+  (function () {
+    const cv = document.getElementById("starfield"), g = cv.getContext("2d");
+    const cols = ["#7A3FF2", "#5B4BD6", "#1FB5C9", "#C346D6", "#FFFFFF", "#FFFFFF", "#E39A0B"];
+    let w = 0, h = 0, pr = 1, field = [], shoot = null, nextShoot = performance.now() + 2500;
+    function size() {
+      pr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth; h = window.innerHeight;
+      cv.width = w * pr; cv.height = h * pr; g.setTransform(pr, 0, 0, pr, 0, 0);
+      const n = Math.round(Math.max(140, Math.min(420, w * h / 3000)));
+      field = Array.from({ length: n }, function () {
+        const depth = Math.random();
+        return { x: Math.random() * w, y: Math.random() * h * 3, r: .6 + depth * 1.9, d: .05 + depth * .35,
+                 c: cols[Math.floor(Math.random() * cols.length)], ph: Math.random() * 6.28, sp: .6 + Math.random() * 1.8,
+                 big: Math.random() < .09 };
+      });
+    }
+    function star(x, y, r, c, a, big) {
+      g.globalAlpha = a;
+      if (c === "#FFFFFF") { g.fillStyle = "rgba(122,63,242,.25)"; g.beginPath(); g.arc(x, y, r * 2.6, 0, 6.283); g.fill(); }
+      g.fillStyle = c; g.beginPath(); g.arc(x, y, r, 0, 6.283); g.fill();
+      if (big) { // four-point sparkle
+        g.strokeStyle = c; g.lineWidth = .8; g.globalAlpha = a * .7;
+        g.beginPath(); g.moveTo(x - r * 5, y); g.lineTo(x + r * 5, y); g.moveTo(x, y - r * 5); g.lineTo(x, y + r * 5); g.stroke();
+      }
+    }
+    function frame(t) {
+      g.clearRect(0, 0, w, h);
+      const sy = window.scrollY;
+      for (const s of field) {
+        let y = (s.y - sy * s.d) % (h * 3); if (y < 0) y += h * 3;
+        if (y > h + 10) continue;
+        const a = reduce ? .75 : .45 + .55 * Math.abs(Math.sin(t / 1000 * s.sp + s.ph));
+        star(s.x, y, s.r, s.c, a, s.big);
+      }
+      if (!reduce) {
+        if (!shoot && t > nextShoot) {
+          shoot = { x: Math.random() * w * .7 + w * .2, y: Math.random() * h * .4, t0: t, len: 120 + Math.random() * 80 };
+        }
+        if (shoot) {
+          const k = (t - shoot.t0) / 900;
+          if (k >= 1) { shoot = null; nextShoot = t + 3500 + Math.random() * 5000; }
+          else {
+            const hx = shoot.x - k * 380, hy = shoot.y + k * 190;
+            const grd = g.createLinearGradient(hx, hy, hx + shoot.len, hy - shoot.len / 2);
+            grd.addColorStop(0, "rgba(122,63,242,.9)"); grd.addColorStop(1, "rgba(122,63,242,0)");
+            g.globalAlpha = Math.sin(k * Math.PI); g.strokeStyle = grd; g.lineWidth = 2;
+            g.beginPath(); g.moveTo(hx, hy); g.lineTo(hx + shoot.len, hy - shoot.len / 2); g.stroke();
+          }
+        }
+      }
+      g.globalAlpha = 1;
+      if (!reduce) requestAnimationFrame(frame);
+    }
+    size(); frame(performance.now());
+    window.addEventListener("resize", function () { size(); if (reduce) frame(0); });
+    if (reduce) window.addEventListener("scroll", function () { frame(0); }, { passive: true });
+  })();
+
+  // Constellation: drifting "stars" (participants) that link up into teams near each other and the cursor
+  const canvas = document.getElementById("constellation");
+  const ctx = canvas.getContext("2d");
+  const styles = getComputedStyle(document.documentElement);
+  const palette = ["--accent", "--climate", "--fin", "--saas", "--lilac"].map(function (v) { return styles.getPropertyValue(v).trim(); });
+  const inkColor = styles.getPropertyValue("--ink").trim();
+  let W = 0, H = 0, dpr = 1, stars = [], mouse = { x: -9999, y: -9999 };
+
+  function resize() {
+    const r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.round(Math.min(90, Math.max(36, W * H / 14000)));
+    stars = Array.from({ length: count }, function () {
+      return {
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25,
+        r: Math.random() * 2.2 + 1, c: palette[Math.floor(Math.random() * palette.length)]
+      };
+    });
+  }
+  function hexA(hex, a) {
+    const n = parseInt(hex.replace("#", ""), 16);
+    return "rgba(" + (n >> 16 & 255) + "," + (n >> 8 & 255) + "," + (n & 255) + "," + a + ")";
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const LINK = 120;
+    for (let i = 0; i < stars.length; i++) {
+      const a = stars[i];
+      for (let j = i + 1; j < stars.length; j++) {
+        const b = stars[j];
+        const dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
+        if (d < LINK) {
+          ctx.strokeStyle = hexA(inkColor, (1 - d / LINK) * .14);
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      const md = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+      if (md < 170) {
+        ctx.strokeStyle = hexA(a.c, (1 - md / 170) * .6);
+        ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+      }
+    }
+    for (const s of stars) {
+      ctx.fillStyle = hexA(s.c, .18);
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r * 3.2, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = s.c;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+  function step() {
+    for (const s of stars) {
+      const dx = mouse.x - s.x, dy = mouse.y - s.y, d = Math.hypot(dx, dy);
+      if (d < 170 && d > 1) { s.vx += dx / d * .012; s.vy += dy / d * .012; }
+      s.vx *= .985; s.vy *= .985;
+      s.vx += (Math.random() - .5) * .01; s.vy += (Math.random() - .5) * .01;
+      s.x += s.vx; s.y += s.vy;
+      if (s.x < -10) s.x = W + 10; if (s.x > W + 10) s.x = -10;
+      if (s.y < -10) s.y = H + 10; if (s.y > H + 10) s.y = -10;
+    }
+    draw();
+    if (!document.hidden) requestAnimationFrame(step);
+  }
+  resize(); draw();
+  window.addEventListener("resize", function () { resize(); draw(); });
+  const hero = canvas.parentElement;
+  hero.addEventListener("pointermove", function (e) { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  hero.addEventListener("pointerleave", function () { mouse.x = mouse.y = -9999; });
+  if (!reduce) {
+    requestAnimationFrame(step);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) requestAnimationFrame(step); });
+  }
+})();
+</script>
+</body>
+</html>
