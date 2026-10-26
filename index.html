@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BE85CQG9FZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BE85CQG9FZ");</script>
 <link rel="icon" href="assets/astro-rocket.webp">
 <meta property="og:image" content="https://start-up-club.github.io/nebula-hackathon/assets/astro-rocket.webp">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -1085,6 +1087,16 @@ const DEADLINE = new Date("2026-11-04T20:00:00-05:00");
 
   // Bases PDF link
   document.querySelectorAll("#bases-link, .js-bases").forEach(function (a) { a.href = BASES_URL; });
+
+  // Analytics: key clicks (gtag only exists on the GitHub/Vercel builds)
+  document.addEventListener("click", function (e) {
+    const el = e.target.closest(".js-form, .js-bases, #bases-link, #verticals-link");
+    if (!el || typeof window.gtag !== "function") return;
+    const sec = el.closest("section, header, footer, .m-cta");
+    const where = sec ? (sec.id || sec.className.split(" ")[0]) : "page";
+    const name = el.classList.contains("js-form") ? "inscripcion_click" : el.id === "verticals-link" ? "ver_verticales" : "ver_bases";
+    window.gtag("event", name, { ubicacion: where });
+  });
 
   // Countdown
   const cells = {};
