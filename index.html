@@ -183,6 +183,14 @@ section { padding-block: clamp(4rem, 8vw, 7.5rem); }
   background: color-mix(in srgb, var(--surface) 75%, transparent); border: 1px solid var(--line); backdrop-filter: blur(6px);
 }
 .chip b { font-weight: 600; }
+.ext-banner { justify-self: start; display: inline-flex; flex-wrap: wrap; align-items: center; gap: .35rem .5rem; text-decoration: none;
+  background: var(--ink); color: #fff; border-radius: 999px; padding: .55rem 1rem; font-size: .95rem; line-height: 1.3;
+  box-shadow: 0 10px 26px -12px color-mix(in srgb, var(--magenta) 80%, transparent); }
+.ext-banner b { color: #FFD166; }
+.ext-banner:hover { background: #2a2650; }
+.ext-dot { width: 9px; height: 9px; border-radius: 50%; background: #FFD166; animation: pulse 1.4s ease-in-out infinite; }
+.ext-tag { font-style: normal; font-family: var(--f-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; background: var(--accent); color: #fff; padding: .15rem .45rem; border-radius: 6px; margin-left: .3rem; vertical-align: middle; }
+@media (max-width: 640px) { .ext-banner { font-size: .85rem; border-radius: 16px; } }
 .chip-open { background: var(--nebula); color: #fff; border-color: transparent; font-weight: 600; }
 
 .has-deco { position: relative; }
@@ -623,6 +631,7 @@ footer .foot { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div>
   <div class="wrap hero-grid">
     <div class="hero-copy load-in">
+      <a class="ext-banner js-form" href="#"><span class="ext-dot" aria-hidden="true"></span><b>¡Ampliamos la convocatoria!</b> Inscríbete hasta el viernes 6 de noviembre, 2:00 p. m. <span aria-hidden="true">→</span></a>
       <span class="eyebrow">Start Up Nebula · Edición Hackathon</span>
       <h1 id="hero-title">
         <span class="word glow">Nebula</span>
@@ -646,7 +655,7 @@ footer .foot { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <aside class="panel load-in" aria-label="Cuenta regresiva al cierre de inscripciones">
       <div class="panel-top">
         <span class="deadline-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>Cierre de inscripciones en</span>
-        <span class="live" id="reg-status">Inscripciones abiertas</span>
+        <span class="live" id="reg-status">Convocatoria extendida</span>
       </div>
       <div class="countdown" id="countdown" role="timer" aria-live="off">
         <div class="cd-cell"><div class="cd-num" data-u="d">--</div><div class="cd-lbl">Días</div></div>
@@ -658,7 +667,7 @@ footer .foot { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <div class="panel-row"><span>Talleres (virtuales)</span><span>Lun 9, Mié 11 y Jue 12 nov</span></div>
         <div class="panel-row"><span>Día de construcción (presencial)</span><span>Vie 13 nov</span></div>
         <div class="panel-row"><span>Gran Final</span><span>Sáb 14 nov</span></div>
-        <div class="panel-row"><span>Cierre de inscripciones</span><span>Mié 4 nov · 8:00 p. m.</span></div>
+        <div class="panel-row"><span>Cierre de inscripciones</span><span>Vie 6 nov · 2:00 p. m. <em class="ext-tag">Extendido</em></span></div>
       </div>
     </aside>
   </div>
@@ -953,7 +962,7 @@ footer .foot { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <p>No necesitas tener un negocio ni saber programar. El emprendimiento no tiene límites académicos: necesitas ganas de resolver un problema.</p>
     </div>
     <div class="steps">
-      <article class="step"><h3>Inscríbete</h3><p>Completa el formulario hasta el miércoles 4 de noviembre a las 8:00 p. m.</p></article>
+      <article class="step"><h3>Inscríbete</h3><p>Completa el formulario hasta el viernes 6 de noviembre a las 2:00 p. m. ¡Ampliamos la convocatoria!</p></article>
       <article class="step"><h3>Elige tu modalidad</h3><p>Participa de forma individual o junto a tu equipo.</p></article>
       <article class="step"><h3>Fórmate</h3><p>Asiste a los talleres de lunes a jueves y elige tu reto.</p></article>
       <article class="step"><h3>Construye y presenta</h3><p>Construye el viernes con tu mentor y presenta el sábado.</p></article>
@@ -1025,7 +1034,7 @@ footer .foot { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <a class="btn btn-primary js-form" href="#"><svg class="rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1Z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2Z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg> Únete a la misión</a>
         <a class="btn btn-ghost" href="#faq">Ver preguntas</a>
       </div>
-      <span class="deadline">Cierre de inscripciones: miércoles 4 de noviembre de 2026, 8:00 p. m.</span>
+      <span class="deadline">¡Convocatoria extendida! Cierre de inscripciones: viernes 6 de noviembre de 2026, 2:00 p. m.</span>
     </div>
   </div>
 </section>
@@ -1051,7 +1060,7 @@ footer .foot { display: flex; flex-wrap: wrap; justify-content: space-between; g
 </footer>
 
 <div class="m-cta" id="m-cta">
-  <div class="m-cta-time"><small>Cierre de inscripciones</small><b id="m-cta-count">--d --h --m</b></div>
+  <div class="m-cta-time"><small>Cierre extendido · Vie 6, 2 p. m.</small><b id="m-cta-count">--d --h --m</b></div>
   <a class="btn btn-primary js-form" href="#">Inscríbete</a>
 </div>
 
@@ -1064,8 +1073,8 @@ const FORM_URL = "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=HOS-e
 /* ===== Enlace a las bases del programa ===== */
 const BASES_URL = "https://drive.google.com/file/d/1KSdc1sEtIjBO3mZ-o9gPOwFg0n71DKVs/view";
 
-/* Cierre de inscripciones: miércoles 4 nov 2026, 8:00 p. m. hora de Lima (UTC-5) */
-const DEADLINE = new Date("2026-11-04T20:00:00-05:00");
+/* Cierre de inscripciones (extendido): viernes 6 nov 2026, 2:00 p. m. hora de Lima (UTC-5) */
+const DEADLINE = new Date("2026-11-06T14:00:00-05:00");
 
 (function () {
   // Registration buttons
